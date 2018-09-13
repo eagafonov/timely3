@@ -7,7 +7,7 @@ all:
 check: flake pytest
 
 flake:
-	flake8 tests timely3
+	python3 -m flake8 tests timely3
 
 pytest:
-	pytest tests
+	python3 -m pytest tests
