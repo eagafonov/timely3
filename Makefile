@@ -7,7 +7,7 @@ all:
 check: flake pytest run-simple
 
 flake:
-	python3 -m flake8 tests timely3
+	python3 -m flake8
 
 pytest:
 	coverage erase

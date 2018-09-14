@@ -8,9 +8,6 @@ from pprint import pprint
 from timely3 import timely3
 import timely3 as timely3_module
 
-
-
-
 import logging
 log = logging.getLogger('timely3/simple')
 
@@ -21,9 +18,11 @@ logging.basicConfig(
 
 log.setLevel(logging.DEBUG)
 
-
 # Import after logger setup
-from example_module.example_submodule import func_from_pkg_01, func_from_pkg_02
+from example_module.example_submodule import (   # noqa: E402
+    func_from_pkg_01,
+    func_from_pkg_02,
+)
 
 
 def func01():
@@ -48,7 +47,6 @@ def func03():
         decorated function with custom scope name
     """
     time.sleep(0.3)
-
 
 
 if __name__ == "__main__":
