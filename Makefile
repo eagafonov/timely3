@@ -10,7 +10,10 @@ flake:
 	python3 -m flake8 tests timely3
 
 pytest:
-	python3 -m pytest --log-format="%(asctime)s %(levelname)s %(message)s" -v -s tests
+	coverage erase
+	coverage run --branch -m pytest -v -s tests
+	coverage report
+	coverage html
 
 run-simple:
 	python3 examples/simple.py
