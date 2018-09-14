@@ -15,3 +15,10 @@ class TestMeasure:
             return 42
 
         assert func2test() == 42
+
+    def test_decorator_class(self):
+        @timely3()
+        def func2test(a):
+            return a * 2
+
+        assert func2test(21) == 42

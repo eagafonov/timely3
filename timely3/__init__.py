@@ -11,7 +11,7 @@ log = logging.getLogger(__name__)
 
 
 LOG_SCOPE = False
-LOG_SCOPE = True
+# LOG_SCOPE = True
 
 
 class timely3(context_manager):
@@ -40,19 +40,13 @@ class timely3(context_manager):
     def report():
         return report()
 
-    def __call__(self, func_or_scope):
-        def _decorator(func):
-            @functools.wraps(func)
-            def _wrapper(*args, **kwargs):
-                with self:
-                    return func(*args, **kwargs)
+    def __call__(self, func=None):
+        @functools.wraps(func)
+        def _wrapper(*args, **kwargs):
+            with self:
+                return func(*args, **kwargs)
 
-            return _wrapper
-
-        if callable(func_or_scope):
-            return _decorator(func_or_scope)
-        else:
-            return _decorator
+        return _wrapper
 
 
 __all__ = [
