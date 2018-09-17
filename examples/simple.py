@@ -50,12 +50,33 @@ def func03():
 
 
 if __name__ == "__main__":
+    assert timely3.sw.count == 0
+    assert timely3.sw.duration_total == 0
+
     with timely3():
         func01()
         func02()
         func03()
+        for _ in range(3):
+            func01()
         func_from_pkg_01()
         func_from_pkg_02()
+
+    assert timely3.sw.count == 0
+    assert timely3.sw.duration_total == 0
+
+    with timely3('second_top_level') as t1:
+        assert t1.stack.len() == 1
+
+        with timely3('sub_level') as t2:
+            assert t1.stack.len() == 2
+            assert t2.stack.len() == 2
+
+            func02()
+
+    assert timely3.sw.count == 0
+    assert timely3.sw.duration_total == 0
+    assert len(t2.journal) == 0
 
     # report
 
