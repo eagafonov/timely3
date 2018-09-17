@@ -4,6 +4,8 @@ python:
     - 3.6
 install:
     - pip install -r requirements-test.txt
+before_script:
+    - export PYTHONPATH=$(pwd)
 script:
     - flake8
     - pytest tests
